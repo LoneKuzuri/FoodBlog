@@ -1,0 +1,77 @@
+.single-blog {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 1.5rem 2rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #222;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: left;
+ 
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: #7faf0e;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: #5c7c0b;
+}
+
+.blog-detail-img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.single-blog h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  background-clip: text;
+  background: linear-gradient(45deg, #7faf0e, #c7d63a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 2rem;
+}
+
+.meta span {
+  font-weight: 600;
+}
+
+.content {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #444;
+  white-space: pre-wrap;           /* preserves line breaks and wraps */
+  overflow-wrap: break-word;       /* breaks long words */
+  word-wrap: break-word;
+}
+
+.not-found {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 1rem 2rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #b00020;
+  background: #ffe6e6;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(176, 0, 32, 0.1);
+}
