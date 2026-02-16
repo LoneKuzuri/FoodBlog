@@ -1,176 +1,361 @@
-/* SingleBlog.css */
+/* SingleBlog.css — Premium UI (keeps your same class names) */
 
-/* Main blog container */
-.single-blog {
-  max-width: 720px;
-  margin: 3rem auto;
-  padding: 2rem;
+:root{
+  --primary:#7faf0e;
+  --primary-dark:#5c7c0b;
+  --accent:#c7d63a;
+
+  --bg:#f5f7fb;
+  --card:#ffffff;
+
+  --text:#0f172a;
+  --muted:#64748b;
+
+  --border:rgba(15,23,42,.10);
+
+  --shadow-sm: 0 10px 26px rgba(15,23,42,.08);
+  --shadow-md: 0 18px 44px rgba(15,23,42,.10);
+  --shadow-lg: 0 24px 70px rgba(15,23,42,.12);
+
+  --r-xl: 22px;
+  --r-lg: 16px;
+  --r-md: 12px;
+
+  --t: .25s ease;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
-  color: #222;
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  color: var(--text);
+  background:
+    radial-gradient(900px 600px at 15% 10%, rgba(127,175,14,.10), transparent 60%),
+    radial-gradient(900px 600px at 85% 20%, rgba(199,214,58,.10), transparent 60%),
+    linear-gradient(180deg, var(--bg), #ffffff);
+}
+
+/* =========================
+   Main container
+========================= */
+.single-blog{
+  max-width: 820px;
+  margin: 2.4rem auto;
+  padding: 1.75rem;
+
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15,23,42,.08);
+  border-radius: var(--r-xl);
+
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(10px);
+
   text-align: left;
-  transition: all 0.3s ease;
-  animation: slideInRight 0.4s ease-in;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  animation: slideInRight 0.45s ease;
 }
 
-/* Back button */
-.back-link {
-  display: inline-block;
-  margin-bottom: 2rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  font-weight: 600;
+.single-blog:hover{
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(127,175,14,.22);
+}
+
+/* Slide-out animation (JSX uses slide-out) */
+.single-blog.slide-out{
+  animation: slideOutLeft 0.35s ease forwards;
+}
+
+/* =========================
+   Top actions (sticky)
+========================= */
+.top-actions{
+  display:flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.1rem;
+
+  position: sticky;
+  top: 12px;
+  z-index: 60;
+
+  padding: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(15,23,42,.10);
+  box-shadow: 0 14px 30px rgba(15,23,42,.08);
+}
+
+/* Back button / link */
+.back-link{
+  display:inline-flex;
+  align-items:center;
+  gap: .5rem;
+
+  padding: .65rem 1rem;
+  font-size: .98rem;
+  font-weight: 900;
+
   color: #fff;
-  background-color: #7faf0e;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   border: none;
-  border-radius: 8px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 999px;
+
+  text-decoration:none;
+  cursor:pointer;
+
+  transition: transform var(--t), box-shadow var(--t), filter var(--t);
+  box-shadow: 0 14px 30px rgba(127,175,14,.22);
 }
 
-.back-link:hover {
-  background-color: #5c7c0b;
+.back-link:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+  box-shadow: 0 18px 38px rgba(127,175,14,.26);
 }
 
-.blog-detail-img {
+.back-link:active{ transform: translateY(0); }
+
+/* Secondary button style */
+.back-link.secondary{
+  background: rgba(127,175,14,.12);
+  color: #2b3a0a;
+  border: 1px solid rgba(127,175,14,.30);
+  box-shadow: none;
+}
+
+.back-link.secondary:hover{
+  background: rgba(127,175,14,.16);
+}
+
+/* Focus states */
+.back-link:focus-visible,
+.retry-button:focus-visible{
+  outline: 2px solid rgba(127,175,14,.70);
+  outline-offset: 3px;
+}
+
+/* =========================
+   Image
+========================= */
+.blog-detail-img{
   width: 100%;
-  height: 350px;
+  height: 360px;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 1.8rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
+  border-radius: var(--r-lg);
+  margin: .75rem 0 1.35rem;
+
+  border: 1px solid rgba(15,23,42,.08);
+  box-shadow: 0 16px 34px rgba(15,23,42,.10);
+  transition: transform .45s ease, filter .35s ease;
 }
 
-.single-blog h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.75rem;
-  font-weight: 800;
-  background: linear-gradient(45deg, #7faf0e, #c7d63a);
+.blog-detail-img:hover{
+  transform: scale(1.01);
+  filter: saturate(1.06);
+}
+
+/* Fallback image */
+.blog-detail-img.fallback-img{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background: linear-gradient(135deg, rgba(127,175,14,.12), rgba(199,214,58,.10));
+  color: var(--primary);
+  font-weight: 1000;
+  letter-spacing: .4px;
+}
+
+/* =========================
+   Title & meta
+========================= */
+.single-blog h1{
+  font-size: clamp(1.85rem, 3.5vw, 2.55rem);
+  margin: 0 0 .65rem;
+  font-weight: 1100;
+  letter-spacing: -0.03em;
+
+  background: linear-gradient(45deg, var(--primary), var(--accent));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.meta {
-  font-size: 0.95rem;
-  color: #666;
-  margin-bottom: 1.8rem;
+.meta{
+  font-size: .95rem;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+  font-weight: 750;
 }
 
-.meta span {
-  font-weight: 600;
+.meta span{
+  font-weight: 1000;
+  color: #334155;
 }
 
-.content {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #333;
+/* =========================
+   Content
+========================= */
+.content{
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #1f2937;
+
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
+
+  background: rgba(127,175,14,.06);
+  border: 1px solid rgba(127,175,14,.18);
+  padding: 1.25rem 1.2rem;
+
+  border-radius: var(--r-lg);
+  box-shadow: 0 10px 20px rgba(15,23,42,.06);
 }
 
-/* Slide-out animation on exit */
-.fade-out {
-  animation: slideOutLeft 0.4s ease forwards;
+/* =========================
+   Error state
+========================= */
+.error-state{
+  text-align:center;
 }
 
-/* Not found loading spinner */
-.not-found {
-  max-width: 600px;
+.error-state h1{
+  -webkit-text-fill-color: initial;
+  background:none;
+  color: var(--primary);
+  margin-bottom:.6rem;
+  font-weight: 1100;
+}
+
+.error-state p{
+  color: var(--muted);
+  margin-bottom: 1.1rem;
+  font-weight: 750;
+}
+
+/* Retry button */
+.retry-button{
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #152306;
+  border: none;
+  padding: .95rem 1.5rem;
+  border-radius: 999px;
+
+  cursor:pointer;
+  font-size: 1rem;
+  font-weight: 1100;
+
+  transition: transform var(--t), box-shadow var(--t), filter var(--t);
+  box-shadow: 0 16px 34px rgba(127,175,14,.20);
+}
+
+.retry-button:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+  box-shadow: 0 20px 44px rgba(127,175,14,.24);
+}
+
+.retry-button:active{ transform: translateY(0); }
+
+/* =========================
+   Loading / not-found
+========================= */
+.not-found{
+  max-width: 640px;
   margin: 3rem auto;
-  padding: 2rem 2.5rem;
+  padding: 2rem 2.25rem;
+
   font-family: 'Inter', system-ui, sans-serif;
-  text-align: center;
-  font-size: 1.5rem;
-  color: #7faf0e;
-  background: #f7fdf0;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(127, 175, 14, 0.15);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
+  text-align:center;
+  font-size: 1.2rem;
+
+  color: var(--primary);
+
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15,23,42,.08);
+  border-radius: var(--r-xl);
+
+  box-shadow: var(--shadow-sm);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap: .6rem;
 }
 
-.not-found::before {
-  content: "Loading blog";
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: #7faf0e;
+.not-found::before{
+  content:"Loading blog";
+  font-weight: 1000;
+  font-size: 1.25rem;
+  color: #2b3a0a;
 }
 
-.not-found .dots {
-  display: inline-flex;
+.not-found .dots{
+  display:inline-flex;
   gap: 6px;
   margin-left: 8px;
 }
 
-.not-found .dot {
+.not-found .dot{
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: #7faf0e;
-  opacity: 0.3;
+  background-color: var(--primary);
+  opacity: .3;
   animation: fade 1.4s infinite ease-in-out;
 }
 
-.not-found .dot:nth-child(1) { animation-delay: 0s; }
-.not-found .dot:nth-child(2) { animation-delay: 0.2s; }
-.not-found .dot:nth-child(3) { animation-delay: 0.4s; }
+.not-found .dot:nth-child(1){ animation-delay:0s; }
+.not-found .dot:nth-child(2){ animation-delay:.2s; }
+.not-found .dot:nth-child(3){ animation-delay:.4s; }
 
-@keyframes fade {
-  0%, 80%, 100% { opacity: 0.3; }
-  40% { opacity: 1; }
+@keyframes fade{
+  0%, 80%, 100%{ opacity:.3; }
+  40%{ opacity:1; }
 }
 
-/* Slide in from right */
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* Slide in/out */
+@keyframes slideInRight{
+  from{ opacity:0; transform: translateX(80px); }
+  to{ opacity:1; transform: translateX(0); }
+}
+@keyframes slideOutLeft{
+  from{ opacity:1; transform: translateX(0); }
+  to{ opacity:0; transform: translateX(-80px); }
 }
 
-/* Slide out to left */
-@keyframes slideOutLeft {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-}
-
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  .single-blog {
-    padding: 1.5rem;
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 768px){
+  .single-blog{
+    padding: 1.25rem;
+    margin: 1.25rem auto;
   }
 
-  .blog-detail-img {
-    height: 240px;
+  .blog-detail-img{
+    height: 250px;
   }
 
-  .single-blog h1 {
-    font-size: 1.8rem;
-  }
-
-  .content {
+  .content{
     font-size: 1rem;
+    padding: 1rem;
   }
 
-  .back-link {
-    font-size: 0.95rem;
-    padding: 0.4rem 0.8rem;
+  .top-actions{
+    border-radius: 18px;
+    padding: 10px;
   }
+
+  .back-link{
+    font-size: .95rem;
+    padding: .55rem .9rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; }
 }
